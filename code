@@ -1,0 +1,88 @@
+#include<iostream>
+#include<conio>
+#include<string>
+#include<stdlib>
+void main()
+ {
+ int u;
+ char words[10][20] =
+  {
+  "india",
+  "pakistan",
+  "nepal",
+  "malaysia",
+  "philippines",
+  "australia",
+  "iran",
+  "ethiopia",
+  "oman",
+  "indonesia"
+  };
+ cout<<"                   HANGMAN-Countries \n";
+ cout<<endl;
+ randomize();
+ int x=random(10);
+ char word[20];
+ strcpy(word,words[x]);
+ int i,f=0,op;
+ p:
+ cout<<"1 to PLAY \n2 for INSTRUCTIONS";
+ cout<<endl;
+ cin>>u;
+ clrscr();
+ if(u==2)
+   {
+   clrscr();
+   cout<<"Hangman is a game where the player has to guess the secret word.\n";
+   cout<<"Press any key to go back";
+   getch();
+   clrscr();
+   goto p;
+   }
+ else
+   {
+   i=0;
+   char j[30]=" _ _ _ _ _ _ _ _ _ _ _ _ _ _ _",guess;
+   int t=strlen(word);
+   for(int z=0;z<2*t;z++)
+    cout<<j[z];
+   cout<<endl;
+   for(;f!=6;)
+    {
+    cout<<"Enter your guess letter";
+    cout<<endl;
+    cin>>guess; clrscr();
+    for(int z=0;z<t;z++)
+     {
+     if(guess==word[z])
+      j[z*2]=guess;
+     else
+      i++;
+      }
+     if(i==t)
+      f++;
+     i=0;
+     clrscr();
+     cout<<"Guesses left"<<(6-f)<<endl;
+     for(int r=0;r<2*t;r++)
+      cout<<j[r];
+     cout<<endl;
+     op=0;
+     for(int qw=0;qw<2*t;qw++)
+      if(j[qw]==' ')
+       op++;
+     if(op==0)
+      {
+      cout<<"You Win!!! \a \n"<<"Congrats!!";
+      getch();
+      goto l2;
+      }
+     if(f==6)
+      {
+      cout<<"You Lost!!   So Shame!!\n The country was--->"<<word;
+      getch();
+      }
+     }
+    }
+   l2:
+ }
